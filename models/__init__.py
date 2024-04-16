@@ -7,4 +7,5 @@ from .rapport import Rapport
 from .modele import Modele
 from .datasetEcg import DatasetsECG
 from .ecg_lead import ECGLead
-from .association import analyses_datasets, datasets_rapport, modeles_rapport
+from .association import analyses_datasets, analyses_modeles
+from .experience import Experiences
