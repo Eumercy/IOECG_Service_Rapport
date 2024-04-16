@@ -52,4 +52,43 @@ def createRapport(id_experience):
         # Erreur, annuler les modifications et renvoyer un message d'erreur
         db.session.rollback()
         return jsonify({"error": str(e)}), 500
+
+
+
+def deleteRapportById(id):
+    print(id)
+    rapport = Rapport.query.filter_by(id_rapport=id).first()  # on récupère le rapport à supprimer
+    if rapport:
+        db.session.delete(rapport)
+        db.session.commit()
+        return jsonify({"message": "Rapport deleted with success"}), 201
+    else:
+        return jsonify({"error": "Rapport not found"}), 404
     
+def getAllRapports():
+    all_rapports = Rapport.query.all()  # Récupérer tous les rapports depuis la base de données
+
+    # Créer la liste des rapports pour les renvoyer au client
+    serialized_rapports = [{
+            "id_rapport": rapport.id_rapport,
+            "id_experience_rapport": rapport.id_experience_rapport,
+            "created_at": rapport.created_at,
+            "name_rapport": rapport.name_rapport
+        } for rapport in all_rapports]
+
+    return jsonify(serialized_rapports)
+
+
+def getRapportById(id):
+    print(id)
+    rapport = Rapport.query.filter_by(id_rapport=id).first()  # on récupère le rapport par son ID
+    if rapport:
+        serialized_rapport = {
+            "id_rapport": rapport.id_rapport,
+            "id_experience_rapport": rapport.id_experience_rapport,
+            "created_at": rapport.created_at,
+            "name_rapport": rapport.name_rapport
+        }
+        return jsonify(serialized_rapport)
+    else:
+        return jsonify({"error": "Rapport not found"}), 404
