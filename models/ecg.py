@@ -4,7 +4,7 @@ class ECG(db.Model):
     __tablename__ = 'ecg'
 
     id_ecg = db.Column(db.Integer, primary_key=True)
-    origin_dataset = db.Column(db.Integer, nullable=True)
+    origine_dataset = db.Column(db.Integer, nullable=True)
     id_patient = db.Column(db.Integer, nullable=False)
     filepath = db.Column(db.String(), nullable=False)
     recording_started_at = db.Column(db.TIMESTAMP, nullable=False)

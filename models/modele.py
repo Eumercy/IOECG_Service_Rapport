@@ -21,3 +21,5 @@ class Modele(db.Model):
     __table_args__ = (
         db.CheckConstraint("task_nature IN ('classification binaire', 'classification multi-class', 'régression')", name='check_task_nature'),
     )
+
+    

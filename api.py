@@ -127,6 +127,8 @@ def getPrediction (id_rapport):
     experience=Experiences.query.filter_by(id_experience=id_experience).first()
     id_modeles=[ exp for exp in experience.models]
     id_dataset= [exp for exp in experience.datasets]
+    print(id_modeles)
+    print(id_dataset)
     modeles = Modele.query.filter(Modele.id.in_(id_modeles)).all()
     datasets = Dataset.query.filter(Dataset.id_dataset.in_(id_dataset)).all()
     analyse=Analyse.query.filter_by(id_analysis=experience.id_analysis_experience).first()
